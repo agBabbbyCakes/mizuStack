@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Silverback Documentation — Mizu Sprint</title>
+    <link rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css" />
+    <link rel="stylesheet" href="assets/css/core-theme.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script defer src="assets/js/alpine.min.js"></script>
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html"><img
+                src="https://www.apeworx.io/assets/apeFull.png" alt="ApeWorX"
+                class="logo" /></a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu(this)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul>
+          <li><a href="saru.html">Ape Framework</a></li>
+          <li><a href="kage.html">Silverback</a></li>
+          <li><a href="hon.html">Docs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- Hero Section -->
+      <section class="card">
+        <h1>Silverback Documentation</h1>
+        <p class="lead">Dive deep into the Silverback SDK and learn how to build powerful blockchain bots.</p>
+      </section>
+
+      <!-- Installation Section -->
+      <section class="card">
+        <h2><i class="fas fa-download"></i> Installation</h2>
+        <p>Get started with Silverback by following these steps:</p>
+        <ul>
+          <li>Install Silverback: <code>pip install silverback</code></li>
+          <li>Verify installation: <code>silverback --version</code></li>
+        </ul>
+      </section>
+
+      <!-- Creating a Bot Section -->
+      <section class="card">
+        <h2><i class="fas fa-robot"></i> Creating a Bot</h2>
+        <p>Learn how to create and deploy a bot with Silverback:</p>
+        <ul>
+          <li>Create a bot file: <code>bots/MyBot.py</code></li>
+          <li>Deploy your bot: <code>silverback run MyBot</code></li>
+        </ul>
+      </section>
+
+      <!-- Event Handling Section -->
+      <section class="card">
+        <h2><i class="fas fa-bell"></i> Event Handling</h2>
+        <p>Set up event handling for your bot:</p>
+        <ul>
+          <li>Define event handlers in your bot file</li>
+          <li>Test your event handling: <code>silverback test MyBot</code></li>
+        </ul>
+      </section>
+
+      <!-- Best Practices Section -->
+      <section class="card">
+        <h2><i class="fas fa-star"></i> Best Practices</h2>
+        <p>Follow these best practices for building robust bots:</p>
+        <ul>
+          <li>Use environment variables for sensitive data</li>
+          <li>Implement error handling and logging</li>
+        </ul>
+      </section>
+
+      <!-- Next Steps -->
+      <div class="next-steps" style="margin-top: 2rem;">
+        <h4><i class="fas fa-lightbulb"></i> Next Steps</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li><i class="fas fa-check-circle"></i> <a href="#bot">Create your first bot</a></li>
+          <li><i class="fas fa-check-circle"></i> <a href="#events">Set up event handling</a></li>
+          <li><i class="fas fa-check-circle"></i> <a href="#deployment">Deploy to your favorite network</a></li>
+        </ul>
+      </div>
+
+      <div class="cta-button-group">
+        <a href="https://github.com/ApeWorX/silverback" role="button" class="contrast">View on GitHub <i class="fas fa-arrow-right"></i></a>
+        <a href="#" role="button" class="secondary">Join Discord Community</a>
+      </div>
+    </main>
+
+    <footer class="container">
+      <small><a href="/" style="color: inherit; text-decoration: none;">&copy; 2025 ApeWorX</a></small>
+    </footer>
+
+    <script>
+      function toggleMenu(element) {
+        element.classList.toggle('active');
+        const menu = element.nextElementSibling;
+        menu.classList.toggle('active');
+      }
+    </script>
+  </body>
+</html> 

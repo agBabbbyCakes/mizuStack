@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ape Framework — ApeWorX, LTD - 2025</title>
+    <link rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/core-theme.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html"><img
+                src="https://www.apeworx.io/assets/apeFull.png" alt="ApeWorX"
+                class="logo" /></a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu(this)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul>
+          <li><a href="saru.html">Ape Framework</a></li>
+          <li><a href="kage.html">Silverback</a></li>
+          <li><a href="hon.html">Docs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- External Trigger -->
+      <section class="hero">
+        <div class="hero-image">
+          <img src="https://www.apeworx.io/framework/frame.png"
+            alt="Ape Framework"
+            style="max-width: 400px; height: auto; filter: drop-shadow(0 8px 36px rgba(139,92,246,0.15)); transform: translateY(-8px) scale(1.2);" />
+        </div>
+     
+        <h1>Master Web3 Development</h1>
+        <p class="lead">Join elite developers who've unleashed unparalleled power and speed with their ultimate development weapon.</p>
+          Ditch the complexity. Ape Framework gives you raw Web3 development power 
+          through a sleek Python interface. One tool. Zero friction. Pure speed.
+        </p>
+        <div class="cta-button-group">
+          <a href="hon.html" role="button" class="contrast">Start Building →</a>
+          <a href="#code-editor" role="button">See How It Works</a>
+        </div>
+
+        <!-- Dynamic Code Editor -->
+        <div class="code-editor glassy">
+          <div class="editor-top-bar">
+            <!-- <div class="window-controls">
+              <span class="window-dot red"></span>
+              <span class="window-dot yellow"></span>
+              <span class="window-dot green"></span>
+            </div> -->
+            <span class="editor-file-name" id="editor-file-name">deploy.py</span>
+          </div>
+          <div class="tabs">
+            <button data-tab="deploy" class="active"><i class="fas fa-rocket"></i> Deploy</button>
+            <button data-tab="interact"><i class="fas fa-code"></i> Interact</button>
+            <button data-tab="multicall"><i class="fas fa-bolt"></i> Multicall</button>
+            <button data-tab="publish"><i class="fas fa-upload"></i> Publish</button>
+            <button data-tab="test"><i class="fas fa-vial"></i> Test</button>
+          </div>
+          <div class="tab-content" data-tab="deploy" style="display:block;">
+            <div class="code-block-title">Deploy a Contract</div>
+            <pre class="code-block python"><code>from ape import project, accounts
+
+# Load your account
+account = accounts.load('dev')
+
+# Deploy your contract
+contract = project.MyContract.deploy(sender=account)
+
+print(f"Contract deployed at: {contract.address}")</code></pre>
+          </div>
+          <div class="tab-content" data-tab="interact" style="display:none;">
+            <div class="code-block-title">Interact with a Contract</div>
+            <pre class="code-block python"><code>from ape import Contract
+
+# Load contract by address
+contract = Contract("0x123...")
+
+# Call a view function
+balance = contract.balanceOf(account)
+
+# Send a transaction
+receipt = contract.transfer(
+    recipient,
+    amount,
+    sender=account
+)</code></pre>
+          </div>
+          <div class="tab-content" data-tab="multicall" style="display:none;">
+            <div class="code-block-title">Batch Multiple Calls</div>
+            <pre class="code-block python"><code>from ape_ethereum import multicall
+
+# Create a multicall
+call = multicall.Call()
+
+# Add multiple calls
+call.add(contract1.balanceOf, account)
+call.add(contract2.balanceOf, account)
+
+# Execute all calls at once
+results = call()</code></pre>
+          </div>
+          <div class="tab-content" data-tab="publish" style="display:none;">
+            <div class="code-block-title">Publish Contract Source</div>
+            <pre class="code-block python"><code>from ape import project
+
+# Deploy with source verification
+contract = project.MyContract.deploy(
+    sender=account,
+    publish=True  # Automatically verify source
+)</code></pre>
+          </div>
+          <div class="tab-content" data-tab="test" style="display:none;">
+            <div class="code-block-title">Write Tests</div>
+            <pre class="code-block python"><code>import pytest
+from ape import accounts
+
+@pytest.fixture
+def owner(accounts):
+    return accounts[0]
+
+def test_deploy(owner, project):
+    contract = project.MyContract.deploy(sender=owner)
+    assert contract.address is not None</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Internal Trigger + Variable Reward -->
+      <section>
+        <h2>Unleash Your Development Superpowers</h2>
+        <div class="feature-grid">
+          <div class="card">
+            <h3><i class="fas fa-rocket"></i> 10x Your Speed</h3>
+            <p>From idea to deployment in minutes. Watch your productivity soar
+              as you ship features that used to take days.</p>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-tools"></i> One Tool, Zero Headaches</h3>
+            <p>Switch chains with a single command. Your code stays clean while
+              you focus on what matters.</p>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-magic"></i> Debug Like a Wizard</h3>
+            <p>Trace transactions, monitor gas, and catch bugs before they hit
+              production. Your secret weapon for bulletproof contracts.</p>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-users"></i> Join the Elite</h3>
+            <p>Connect with top developers. Share plugins, get help, and
+              build your reputation in the community.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Action + Investment -->
+      <section class="card">
+        <h2>Your First 5 Minutes</h2>
+        <p class="lead">See the magic happen in real-time.</p>
+        <div class="code-block" style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+          <code style="display: block; overflow-x: auto;">
+            <span style="color: var(--color-muted);"># Install Ape Framework</span><br>
+            pip install eth-ape
+          </code>
+          <button class="copy-btn" onclick="copyToClipboard('pip install eth-ape', event)" style="float: right; margin-top: -2rem;">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        <div class="code-block" style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+          <code style="display: block; overflow-x: auto;">
+            <span style="color: var(--color-muted);"># Create a new project</span><br>
+            ape init
+          </code>
+          <button class="copy-btn" onclick="copyToClipboard('ape init', event)" style="float: right; margin-top: -2rem;">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        <div class="code-block" style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+          <code style="display: block; overflow-x: auto;">
+            <span style="color: var(--color-muted);"># Deploy your first contract</span><br>
+            ape run deploy
+          </code>
+          <button class="copy-btn" onclick="copyToClipboard('ape run deploy', event)" style="float: right; margin-top: -2rem;">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        <div class="code-block" style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+          <code style="display: block; overflow-x: auto;">
+            <span style="color: var(--color-muted);"># Run your test suite</span><br>
+            ape test
+          </code>
+          <button class="copy-btn" onclick="copyToClipboard('ape test', event)" style="float: right; margin-top: -2rem;">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        <p>
+          That's it. No complex setup. No configuration hell. Just pure
+          development power at your fingertips.
+        </p>
+      </section>
+
+      <!-- Social Proof + Variable Reward -->
+      <section class="card">
+        <h2>Trusted by the Best</h2>
+        <p class="lead">Join the ranks of teams who've transformed their Web3
+          development.</p>
+        <div class="client-logos carousel">
+          <div class="carousel-track">
+            <img src="assets/imgs/lido.png" alt="Lido" class="client-logo" />
+            <img src="assets/imgs/yearn.png" alt="Yearn" class="client-logo" />
+            <img src="https://miro.medium.com/v2/resize:fit:640/1*rY6nMVtbpNB6HH0pDhd98w.jpeg" alt="Curve" class="client-logo" />
+            <!-- Repeat logos for seamless infinite effect -->
+            <img src="assets/imgs/lido.png" alt="Lido" class="client-logo" />
+            <img src="assets/imgs/yearn.png" alt="Yearn" class="client-logo" />
+            <img src="https://miro.medium.com/v2/resize:fit:640/1*rY6nMVtbpNB6HH0pDhd98w.jpeg" alt="Curve" class="client-logo" />
+          </div>
+        </div>
+        <p class="release-note">
+          "Ape Framework cut our development time in half. It's become an essential part of our stack."
+          — Lead Developer, Yearn
+        </p>
+      </section>
+
+      <!-- Investment + Final Trigger -->
+      <section class="card">
+        <h2>Ready to Transform Your Workflow?</h2>
+        <p class="lead">Join the community of developers who've found their
+          edge.</p>
+
+        <!-- Quick Start Guide -->
+        <div class="quick-start">
+          <h3><i class="fas fa-terminal"></i> Quick Start Guide</h3>
+          <div id="quickstart-editor" class="code-editor-container" style="margin-bottom:2rem;">
+            <div class="editor-top-bar">
+              <!-- c<div class="window-controls">
+                <span class="window-dot red"></span>
+                <span class="window-dot yellow"></span>
+                <span class="window-dot green"></span>
+              </div> -->
+              <span class="editor-file-name" id="quickstart-file-name">install.sh</span>
+            </div>
+            <div class="tabs">
+              <button class="tab-btn active" data-tab="install"><i class="fas fa-download"></i> Install</button>
+              <button class="tab-btn" data-tab="init"><i class="fas fa-folder-plus"></i> Init</button>
+              <button class="tab-btn" data-tab="deploy"><i class="fas fa-rocket"></i> Deploy</button>
+              <button class="tab-btn" data-tab="test"><i class="fas fa-vial"></i> Test</button>
+            </div>
+            <div class="code-editor-content">
+              <div class="code-block-wrapper" data-tab="install">
+                <div class="code-block-title">Install Ape Framework</div>
+                <pre class="code-block shell"><code># Install via pip
+pip install eth-ape</code>
+                <button class="copy-btn" onclick="copyToClipboard('# Install via pip\npip install eth-ape', event)"><i class="fas fa-copy"></i></button>
+              </pre>
+              </div>
+              <div class="code-block-wrapper" data-tab="init" style="display:none;">
+                <div class="code-block-title">Initialize Project</div>
+                <pre class="code-block shell"><code># Create a new project
+ape init</code>
+                <button class="copy-btn" onclick="copyToClipboard('# Create a new project\nape init', event)"><i class="fas fa-copy"></i></button>
+              </pre>
+              </div>
+              <div class="code-block-wrapper" data-tab="deploy" style="display:none;">
+                <div class="code-block-title">Deploy Contract</div>
+                <pre class="code-block shell"><code># Deploy your first contract
+ape run deploy</code>
+                <button class="copy-btn" onclick="copyToClipboard('# Deploy your first contract\nape run deploy', event)"><i class="fas fa-copy"></i></button>
+              </pre>
+              </div>
+              <div class="code-block-wrapper" data-tab="test" style="display:none;">
+                <div class="code-block-title">Run Tests</div>
+                <pre class="code-block shell"><code># Run your test suite
+ape test</code>
+                <button class="copy-btn" onclick="copyToClipboard('# Run your test suite\nape test', event)"><i class="fas fa-copy"></i></button>
+              </pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="next-steps">
+            <h4><i class="fas fa-lightbulb"></i> Next Steps</h4>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> <a
+                  href="hon.html#contracts">Write your first contract</a></li>
+              <li><i class="fas fa-check-circle"></i> <a
+                  href="hon.html#testing">Set up your test suite</a></li>
+              <li><i class="fas fa-check-circle"></i> <a
+                  href="hon.html#deployment">Deploy to your favorite
+                  network</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cta-button-group">
+          <a href="hon.html" role="button" class="contrast">View Full
+            Documentation <i class="fas fa-arrow-right"></i></a>
+          <a href="https://github.com/ApeWorX/ape" role="button"
+            class="secondary">Star on GitHub</a>
+        </div>
+        <p class="release-note">
+          ⭐️ Join 500+ developers who've starred our repo
+        </p>
+      </section>
+
+      <!-- Latest Release + Investment -->
+      <section class="card">
+        <h2>Latest Release: v0.8.32</h2>
+        <p class="lead">Experience the future of Web3 development.</p>
+        <div class="feature-grid">
+          <div class="card">
+            <h3><i class="fas fa-link"></i> Multi-Chain Mastery</h3>
+            <p>Access local, testnet, and live networks simultaneously. Your
+              development playground just got bigger.</p>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-plug"></i> Plugin Power</h3>
+            <p>Extend your capabilities with QuickNode, Etherscan, Ledger, and
+              more. Your toolkit, your rules.</p>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-shield-alt"></i> Fortress Security</h3>
+            <p>Protected accounts with encrypted keyfiles and hardware wallet
+              support. Sleep soundly at night.</p>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-chart-line"></i> Data Science Ready</h3>
+            <p>Integrate with Jupyter, Pandas, and NumPy. Turn blockchain data
+              into actionable insights.</p>
+          </div>
+        </div>
+        <div class="cta-button-group">
+          <a href="#" role="button" class="contrast">View Release Notes <i
+              class="fas fa-arrow-right"></i></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <small><a href="index.html" class="footer-copyright">&copy; APEWORX <span class="roman">MMXXV</span></a></small>
+    </footer>
+
+    <!-- Add copy to clipboard functionality -->
+    <script>
+      function copyToClipboard(text, event) {
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = event.target.closest('.copy-btn');
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = '<i class="fas fa-check"></i>';
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+          }, 2000);
+        });
+      }
+
+      function toggleMenu(element) {
+        element.classList.toggle('active');
+        const menu = element.nextElementSibling;
+        menu.classList.toggle('active');
+      }
+
+      // Tab switching functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        // Function to handle tab switching for a specific editor
+        function setupTabs(editorContainer) {
+          const tabButtons = editorContainer.querySelectorAll('.tabs button, .tab-btn');
+          const tabContents = editorContainer.querySelectorAll('.tab-content, .code-block-wrapper');
+
+          tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              // Remove active class from all buttons and hide all content
+              tabButtons.forEach(btn => btn.classList.remove('active'));
+              tabContents.forEach(content => content.style.display = 'none');
+
+              // Add active class to clicked button
+              button.classList.add('active');
+
+              // Show corresponding content
+              const tabId = button.getAttribute('data-tab');
+              const activeContent = editorContainer.querySelector(`.tab-content[data-tab="${tabId}"], .code-block-wrapper[data-tab="${tabId}"]`);
+              if (activeContent) {
+                activeContent.style.display = 'block';
+              }
+            });
+          });
+        }
+
+        // Setup tabs for both code editors
+        const mainCodeEditor = document.querySelector('.code-editor.glassy');
+        const quickstartEditor = document.querySelector('#quickstart-editor');
+
+        if (mainCodeEditor) setupTabs(mainCodeEditor);
+        if (quickstartEditor) setupTabs(quickstartEditor);
+      });
+    </script>
+  </body>
+</html>

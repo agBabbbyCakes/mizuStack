@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ApeWorX — Mizu Sprint</title>
+    <link rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css" />
+    <link rel="stylesheet" href="assets/css/core-theme.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <script defer src="assets/js/alpine.min.js"></script>
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html"><img
+                src="assets/imgs/APEWORX LOGO 2025.png" alt="ApeWorX"
+                class="logo" /></a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu(this)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul>
+          <li><a href="saru.html">Ape Framework</a></li>
+          <li><a href="kage.html">Silverback</a></li>
+          <li><a href="hon.html">Docs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- External Trigger: Clear value proposition -->
+      <section class="hero">
+        <img src="assets/imgs/APEWORX LOGO 2025.png" alt="ApeWorX" class="hero-logo" />
+        <h1>Build Web3 Faster with Python</h1>
+        <p class="lead">The Python-native toolkit for smart contracts.
+          Deploy, test, and automate in minutes, not days.</p>
+
+        <!-- Client Proof Section INSIDE HERO -->
+        <div class="client-proof">
+          <h2>Trusted by Industry Leaders</h2>
+          <div class="client-logos carousel hero-logos">
+            <div class="carousel-track">
+              <img src="assets/imgs/lido.png" alt="Lido" class="client-logo hero-logo" />
+              <img src="assets/imgs/yearn.png" alt="Yearn" class="client-logo hero-logo" />
+              <img src="https://miro.medium.com/v2/resize:fit:640/1*rY6nMVtbpNB6HH0pDhd98w.jpeg" alt="Curve" class="client-logo hero-logo" />
+              <!-- Repeat logos for seamless infinite effect -->
+              <img src="assets/imgs/lido.png" alt="Lido" class="client-logo hero-logo" />
+              <img src="assets/imgs/yearn.png" alt="Yearn" class="client-logo hero-logo" />
+              <img src="https://miro.medium.com/v2/resize:fit:640/1*rY6nMVtbpNB6HH0pDhd98w.jpeg" alt="Curve" class="client-logo hero-logo" />
+            </div>
+          </div>
+        </div>
+
+
+        <div class="cta-button-group">
+          <a href="hon.html" role="button" class="contrast">Start Building
+            Now</a>
+          <a href="saru.html" role="button">See How It Works</a>
+        </div>
+      </section>
+
+      <!-- Action: Make it easy to get started -->
+      <section class="card">
+        <h2>Get Started in 2 Minutes</h2>
+        <pre><code>$ pip install eth-ape
+$ ape init</code></pre>
+        <p>That's it! You're ready to build.</p>
+        <div class="cta-button-group">
+          <a href="hon.html" role="button" class="contrast">Quick Start
+            Guide</a>
+        </div>
+      </section>
+
+      <!-- Variable Reward: Show different use cases -->
+      <section class="tools-grid">
+        <div class="card">
+          <h2>Build Smart Contracts</h2>
+          <ul>
+            <li>Deploy to Ethereum, Optimism, Arbitrum</li>
+            <li>Write clean test suites</li>
+            <li>Extend with plugins</li>
+          </ul>
+          <a href="saru.html" role="button">Try the Framework</a>
+        </div>
+        <div class="card">
+          <h2>Silverback Automation</h2>
+          <ul>
+            <li>Monitor events</li>
+            <li>Confirm blocks</li>
+            <li>Trigger actions</li>
+          </ul>
+          <a href="kage.html" role="button">Learn More</a>
+        </div>
+      </section>
+
+
+      <section class="card">
+        <h2>Join the Community</h2>
+        <p class="lead">Stay update to date and see what the devs are up to</p>
+        <div class="cta-button-group">
+          <a href="kage.html" role="button">Join on Github</a>
+        </div>
+      </section>
+
+      <!-- Final Trigger: Clear next step -->
+      <section class="card">
+        <h2>Ready to Build Something Amazing?</h2>
+        <p class="lead">Start building your next Web3 project with ApeWorX
+          today.</p>
+        <div class="cta-button-group">
+          <a href="hon.html" role="button" class="contrast">Get Started</a>
+          <a href="saru.html" role="button">View Examples</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <small><a href="index.html" class="footer-copyright">&copy; ApeWorX <span class="roman">MMXXV</span></a></small>
+    </footer>
+
+    <script>
+      function toggleMenu(element) {
+        element.classList.toggle('active');
+        const menu = element.nextElementSibling;
+        menu.classList.toggle('active');
+      }
+
+      // Set static background image
+      document.documentElement.style.setProperty('--random-bg', "url('assets/imgs/@bg_1.jpg')");
+    </script>
+  </body>
+</html>

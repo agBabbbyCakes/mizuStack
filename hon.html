@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation — Mizu Sprint</title>
+    <link rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css" />
+    <link rel="stylesheet" href="assets/css/core-theme.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script defer src="assets/js/alpine.min.js"></script>
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html"><img
+                src="https://www.apeworx.io/assets/apeFull.png" alt="ApeWorX"
+                class="logo"  ></a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu(this)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul>
+          <li><a href="saru.html">Ape Framework</a></li>
+          <li><a href="kage.html">Silverback</a></li>
+          <li><a href="hon.html">Docs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- Hero Section -->
+      <section class="hero">
+        <img src="https://docs.apeworx.io/docs-logo-8bit.png" alt="ApeWorX Documentation" class="docs-logo" style="margin-top:30px;">
+        <h1>ApeWorX Documentation</h1>
+        <p class="lead">Learn how to build powerful smart contracts and blockchain bots with Ape Framework and Silverback.</p>
+      </section>
+
+      <!-- Table of Contents Card -->
+      <section class="card toc-card">
+        <div class="search-container">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search documentation..." id="doc-search">
+          </div>
+        </div>
+        <div class="toc-grid">
+          <div class="toc-section">
+            <h3><i class="fas fa-rocket"></i> Getting Started</h3>
+            <ul>
+              <li><a href="#environment-setup">Environment Setup</a></li>
+              <li><a href="#project-setup">Project Setup</a></li>
+              <li><a href="#first-contract">Your First Contract</a></li>
+            </ul>
+          </div>
+          <div class="toc-section">
+            <h3><i class="fas fa-code"></i> Core Concepts</h3>
+            <ul>
+              <li><a href="#contracts">Smart Contracts</a></li>
+              <li><a href="#testing">Testing</a></li>
+              <li><a href="#deployment">Deployment</a></li>
+            </ul>
+          </div>
+          <div class="toc-section">
+            <h3><i class="fas fa-microchip"></i> Silverback</h3>
+            <ul>
+              <li><a href="#bot-basics">Bot Basics</a></li>
+              <li><a href="#event-handling">Event Handling</a></li>
+              <li><a href="#best-practices">Best Practices</a></li>
+            </ul>
+          </div>
+          <div class="toc-section">
+            <h3><i class="fas fa-puzzle-piece"></i> Advanced</h3>
+            <ul>
+              <li><a href="#plugins">Plugins</a></li>
+              <li><a href="#custom-scripts">Custom Scripts</a></li>
+              <li><a href="#security">Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Getting Started Section -->
+      <section class="card">
+        <h2><i class="fas fa-sparkles"></i> Getting Started</h2>
+        <p class="lead">Your journey to Web3 development starts here.</p>
+
+        <!-- Step 1: Environment Setup -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-terminal"></i> Step 1: Set Up Your Environment</h3>
+          <div class="steps" style="margin: 1.5rem 0;">
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Create a Virtual Environment (Recommended)</h4>
+              <div class="code-block" style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+                <code style="display: block; overflow-x: auto;">
+                  <span style="color: var(--color-muted);"># Create virtual environment</span><br>
+                  python3 -m venv /path/to/new/environment<br>
+                  source /bin/activate
+                </code>
+                <button class="copy-btn" onclick="copyToClipboard('python3 -m venv /path/to/new/environment\nsource /bin/activate')" style="float: right; margin-top: -2rem;">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Install Ape Framework</h4>
+              <div class="code-block" style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+                <code style="display: block; overflow-x: auto;">
+                  <span style="color: var(--color-muted);"># Update pip and install Ape</span><br>
+                  pip install -U pip<br>
+                  pip install eth-ape
+                </code>
+                <button class="copy-btn" onclick="copyToClipboard('pip install -U pip\npip install eth-ape')" style="float: right; margin-top: -2rem;">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Project Setup -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-folder-tree"></i> Step 2: Create Your First Project</h3>
+          <div class="steps" style="margin: 1.5rem 0;">
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Initialize a New Project</h4>
+              <div class="code-block"
+                style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+                <code style="display: block; overflow-x: auto;">
+                  <span style="color: var(--color-muted);"># Create a new project</span><br>
+                  ape init
+                </code>
+                <button class="copy-btn" onclick="copyToClipboard('ape init')"
+                  style="float: right; margin-top: -2rem;">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="step">
+              <h4>Run Your First Script</h4>
+              <div class="code-block"
+                style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+                <code style="display: block; overflow-x: auto;">
+                  <span style="color: var(--color-muted);"># Deploy your first contract</span><br>
+                  ape run deploy
+                </code>
+                <button class="copy-btn"
+                  onclick="copyToClipboard('ape run deploy')"
+                  style="float: right; margin-top: -2rem;">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Projects Section -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-diagram-project"></i> Sample Contracts to Explore</h3>
+          <p>Tinker with these example contracts to learn the basics:</p>
+
+          <div class="project-grid"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+            <div class="project-card"
+              style="background: var(--color-code-bg); border-radius: var(--radius-sm); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+              <h4><i class="fas fa-paintbrush-fine"></i> ERC721 NFT Token</h4>
+              <p>Create your own NFT collection with metadata support.</p>
+              <button onclick="toggleCode('erc721')" role="button" class="contrast" style="width: 100%; margin-top: 1rem;">View Example</button>
+            </div>
+
+            <div class="project-card"
+              style="background: var(--color-code-bg); border-radius: var(--radius-sm); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+              <h4><i class="fas fa-coins"></i> ERC20 Token</h4>
+              <p>Build your own fungible token with standard features.</p>
+              <button onclick="toggleCode('erc20')" role="button" class="contrast" style="width: 100%; margin-top: 1rem;">View Example</button>
+            </div>
+          </div>
+
+          <!-- ERC721 Code Example -->
+          <div id="erc721-code" style="display: none; margin: 2rem 0;">
+            <div class="code-container">
+              <div class="code-block-title">Vyper Contract</div>
+              <pre class="code-block vyper">
+                <code style="color: var(--color-code-text); font-size: 0.9em;">#pragma version >0.3.10
+
+###########################################################################
+## THIS IS EXAMPLE CODE, NOT MEANT TO BE USED IN PRODUCTION! CAVEAT EMPTOR!
+###########################################################################
+
+# @dev example implementation of ERC-721 non-fungible token standard.
+from ethereum.ercs import IERC165
+from ethereum.ercs import IERC721
+
+implements: IERC721
+implements: IERC165
+
+# Interface for the contract called by safeTransferFrom()
+interface ERC721Receiver:
+    def onERC721Received(
+            _operator: address,
+            _from: address,
+            _tokenId: uint256,
+            _data: Bytes[1024]
+        ) -> bytes4: nonpayable
+
+# Core functionality
+@deploy
+def __init__():
+    self.minter = msg.sender
+    self.baseURL = "https://api.babby.xyz/metadata/"
+
+@view
+@external
+def balanceOf(_owner: address) -> uint256:
+    assert _owner != empty(address)
+    return self.ownerToNFTokenCount[_owner]
+
+# More functions available in the full example...</code>
+                <button class="copy-btn" onclick="copyCode('erc721')">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </pre>
+              <div style="margin-top: 1rem;">
+                <a
+                  href="https://github.com/vyperlang/vyper/blob/master/examples/tokens/ERC721.vy"
+                  target="_blank"
+                  role="button"
+                  class="contrast">
+                  <i class="fas fa-external-link-alt"></i> View Full Implementation
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clone Project Section -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-code-fork"></i> Clone and Customize</h3>
+          <p>Use our template system to quickly start with a customized project:</p>
+
+          <div class="code-block" style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+            <code style="display: block; overflow-x: auto;">
+              <span style="color: var(--color-muted);"># Clone a template project</span><br>
+              ape template clone nft-collection
+            </code>
+            <button class="copy-btn" onclick="copyToClipboard('ape template clone nft-collection')" style="float: right; margin-top: -2rem;">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Silverback Templates and Bot Code -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-microchip"></i> Silverback Templates and Bot Code</h3>
+          <p>Explore our Silverback templates and bot code examples to get started quickly:</p>
+
+          <div class="project-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+            <div class="project-card" style="background: var(--color-code-bg); border-radius: var(--radius-sm); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+              <h4><i class="fas fa-bolt-lightning"></i> DeFi Arbitrage Bot</h4>
+              <p>Automate arbitrage between DEXs with our pre-built Silverback bot.</p>
+              <button onclick="toggleCode('arbitrage')" role="button" class="contrast" style="width: 100%; margin-top: 1rem;">View Example</button>
+            </div>
+
+            <div class="project-card" style="background: var(--color-code-bg); border-radius: var(--radius-sm); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+              <h4><i class="fas fa-users-gear"></i> DAO Voting Bot</h4>
+              <p>Monitor and execute DAO votes automatically with Silverback.</p>
+              <button onclick="toggleCode('dao')" role="button" class="contrast" style="width: 100%; margin-top: 1rem;">View Example</button>
+            </div>
+          </div>
+
+          <!-- Arbitrage Bot Code Example -->
+          <div id="arbitrage-code" style="display: none; margin: 2rem 0;">
+            <div class="code-container">
+              <div class="code-block-title">Python Bot Code</div>
+              <pre class="code-block python">
+                <code style="color: var(--color-code-text); font-size: 0.9em;"># Silverback DeFi Arbitrage Bot Example
+from silverback import Bot, Event
+
+class ArbitrageBot(Bot):
+    def __init__(self):
+        super().__init__()
+        self.dex1 = "Uniswap"
+        self.dex2 = "SushiSwap"
+
+    def on_price_update(self, event: Event):
+        if self.check_arbitrage_opportunity(event):
+            self.execute_trade(event)
+
+    def check_arbitrage_opportunity(self, event):
+        # Logic to check for arbitrage
+        return True
+
+    def execute_trade(self, event):
+        # Logic to execute the trade
+        pass
+
+# Run the bot
+if __name__ == "__main__":
+    bot = ArbitrageBot()
+    bot.run()</code>
+                <button class="copy-btn" onclick="copyCode('arbitrage')">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </pre>
+            </div>
+          </div>
+
+          <!-- DAO Voting Bot Code Example -->
+          <div id="dao-code" style="display: none; margin: 2rem 0;">
+            <div class="code-container">
+              <div class="code-block-title">Python Bot Code</div>
+              <pre class="code-block python">
+                <code style="color: var(--color-code-text); font-size: 0.9em;"># Silverback DAO Voting Bot Example
+from silverback import Bot, Event
+
+class DAOVotingBot(Bot):
+    def __init__(self):
+        super().__init__()
+        self.dao_address = "0x123..."
+
+    def on_proposal_created(self, event: Event):
+        if self.should_vote(event):
+            self.cast_vote(event)
+
+    def should_vote(self, event):
+        # Logic to decide whether to vote
+        return True
+
+    def cast_vote(self, event):
+        # Logic to cast the vote
+        pass
+
+# Run the bot
+if __name__ == "__main__":
+    bot = DAOVotingBot()
+    bot.run()</code>
+                <button class="copy-btn" onclick="copyCode('dao')">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </pre>
+            </div>
+          </div>
+        </div>
+        <!-- Commenting out How to Use Ape and Silverback section for now
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-book-open-reader"></i> How to Use Ape and Silverback</h3>
+          <p>Learn how to use both Ape Framework and Silverback SDK for your projects:</p>
+
+          <div class="steps" style="margin: 1.5rem 0;">
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Using Ape Framework</h4>
+              <p>Ape Framework is your go-to tool for smart contract development. Here's how to get started:</p>
+              <ul>
+                <li>Install Ape: <code>pip install eth-ape</code></li>
+                <li>Initialize a project: <code>ape init</code></li>
+                <li>Write and deploy contracts: <code>ape run deploy</code></li>
+              </ul>
+            </div>
+
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Using Silverback SDK</h4>
+              <p>Silverback SDK helps you build automated bots for Web3. Here's how to use it:</p>
+              <ul>
+                <li>Install Silverback: <code>pip install silverback-sdk</code></li>
+                <li>Create a bot: <code>from silverback import Bot</code></li>
+                <li>Define event handlers and run your bot: <code>bot.run()</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        -->
+
+        <!-- Ape Framework Documentation -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-code-branch"></i> Ape Framework Documentation</h3>
+          <p>Dive deep into the Ape Framework with our comprehensive documentation:</p>
+
+          <div class="steps" style="margin: 1.5rem 0;">
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Installation</h4>
+              <p>Get started with Ape Framework by following these steps:</p>
+              <ul>
+                <li>Install Ape: <code>pip install eth-ape</code></li>
+                <li>Verify installation: <code>ape --version</code></li>
+              </ul>
+            </div>
+
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Project Setup</h4>
+              <p>Initialize and set up your Ape project:</p>
+              <ul>
+                <li>Create a new project: <code>ape init</code></li>
+                <li>Configure your project settings in <code>ape-config.yaml</code></li>
+              </ul>
+            </div>
+
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Writing Smart Contracts</h4>
+              <p>Learn how to write and deploy smart contracts with Ape:</p>
+              <ul>
+                <li>Create a contract file: <code>contracts/MyContract.vy</code></li>
+                <li>Deploy your contract: <code>ape run deploy</code></li>
+              </ul>
+            </div>
+
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Testing</h4>
+              <p>Set up your test suite for smart contracts:</p>
+              <ul>
+                <li>Write tests in <code>tests/</code></li>
+                <li>Run tests: <code>ape test</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Silverback Documentation -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-microchip"></i> Silverback Documentation</h3>
+          <p>Explore the Silverback SDK with our detailed documentation:</p>
+
+          <div class="steps" style="margin: 1.5rem 0;">
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Installation</h4>
+              <p>Get started with Silverback SDK:</p>
+              <ul>
+                <li>Install Silverback: <code>pip install silverback-sdk</code></li>
+                <li>Verify installation: <code>silverback --version</code></li>
+              </ul>
+            </div>
+
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Creating a Bot</h4>
+              <p>Learn how to create and run a bot with Silverback:</p>
+              <ul>
+                <li>Create a bot file: <code>my_bot.py</code></li>
+                <li>Define event handlers and run your bot: <code>silverback run my_bot.py</code></li>
+              </ul>
+            </div>
+
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Event Handling</h4>
+              <p>Understand how to handle events in your bot:</p>
+              <ul>
+                <li>Define event handlers: <code>def on_event(self, event: Event):</code></li>
+                <li>Process events and execute actions based on triggers.</li>
+              </ul>
+            </div>
+
+            <div class="step" style="margin-bottom: 1.5rem;">
+              <h4>Best Practices</h4>
+              <p>Follow these best practices for building robust bots:</p>
+              <ul>
+                <li>Use error handling and logging.</li>
+                <li>Test your bot thoroughly before deployment.</li>
+                <li>Monitor and optimize performance.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dive Deeper into Documentation -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-book-bookmark"></i> Dive Deeper into Documentation</h3>
+          <p>Ready to take your knowledge to the next level? Explore our detailed subpages for Ape Framework and Silverback:</p>
+
+          <div class="cta-button-group" style="margin-top: 1rem;">
+            <a href="ape-docs.html" role="button" class="contrast">Explore Ape Framework Docs <i class="fas fa-arrow-right-to-bracket"></i></a>
+            <a href="silverback-docs.html" role="button" class="secondary">Explore Silverback Docs <i class="fas fa-arrow-right-to-bracket"></i></a>
+          </div>
+        </div>
+
+        <!-- More Examples Section -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-code-commit"></i> More Examples</h3>
+          <p>Explore these additional examples to enhance your understanding:</p>
+
+          <div class="project-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+            <div class="project-card" style="background: var(--color-code-bg); border-radius: var(--radius-sm); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+              <h4><i class="fas fa-shield-halved"></i> Secure Smart Contract</h4>
+              <p>Learn how to implement security best practices in your smart contracts.</p>
+              <button onclick="toggleCode('secure')" role="button" class="contrast" style="width: 100%; margin-top: 1rem;">View Example</button>
+            </div>
+
+            <div class="project-card" style="background: var(--color-code-bg); border-radius: var(--radius-sm); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.05);">
+              <h4><i class="fas fa-chart-scatter"></i> DeFi Integration</h4>
+              <p>Integrate your smart contracts with DeFi protocols.</p>
+              <button onclick="toggleCode('defi')" role="button" class="contrast" style="width: 100%; margin-top: 1rem;">View Example</button>
+            </div>
+          </div>
+
+          <!-- Secure Smart Contract Code Example -->
+          <div id="secure-code" style="display: none; margin: 2rem 0;">
+            <div class="code-container">
+              <div class="code-block-title">Vyper Contract</div>
+              <pre class="code-block vyper">
+                <code style="color: var(--color-code-text); font-size: 0.9em;"># Secure Smart Contract Example
+# This is a simple example of a secure smart contract.
+
+@public
+def secure_function():
+    # Implement security measures here
+    pass</code>
+                <button class="copy-btn" onclick="copyCode('secure')">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </pre>
+            </div>
+          </div>
+
+          <!-- DeFi Integration Code Example -->
+          <div id="defi-code" style="display: none; margin: 2rem 0;">
+            <div class="code-container">
+              <div class="code-block-title">Vyper Contract</div>
+              <pre class="code-block vyper">
+                <code style="color: var(--color-code-text); font-size: 0.9em;"># DeFi Integration Example
+# This is a simple example of integrating with DeFi protocols.
+
+@public
+def integrate_defi():
+    # Implement DeFi integration here
+    pass</code>
+                <button class="copy-btn" onclick="copyCode('defi')">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Downloadable Script Section -->
+        <div class="quick-start" style="margin: 2rem 0;">
+          <h3><i class="fas fa-file-arrow-down"></i> Downloadable Script</h3>
+          <p>Download a complete script that you can modify to suit your needs:</p>
+
+          <div class="cta-button-group" style="margin-top: 1rem;">
+            <a href="assets/scripts/complete_script.py" download role="button" class="contrast">Download Script <i class="fas fa-download"></i></a>
+          </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="next-steps" style="margin-top: 2rem;">
+          <h4><i class="fas fa-lightbulb-on"></i> Next Steps</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li><i class="fas fa-check-circle"></i> <a href="#contracts">Write your first smart contract</a></li>
+            <li><i class="fas fa-check-circle"></i> <a href="#testing">Set up your test suite</a></li>
+            <li><i class="fas fa-check-circle"></i> <a href="#deployment">Deploy to your favorite network</a></li>
+          </ul>
+        </div>
+
+        <div class="cta-button-group">
+          <a href="https://github.com/ApeWorX/ape" role="button" class="contrast">View on GitHub <i class="fas fa-arrow-right"></i></a>
+          <a href="#" role="button" class="secondary">Join Discord Community</a>
+        </div>
+      </section>
+
+      <!-- Available Documentation -->
+      <section class="card">
+        <h2><i class="fas fa-book-open"></i> Available Documentation</h2>
+        <div class="feature-grid">
+          <div class="card">
+            <h3><i class="fas fa-code-merge"></i> Ape Framework</h3>
+            <ul>
+              <li><a href="#">Core Concepts</a></li>
+              <li><a href="#">Plugin System</a></li>
+              <li><a href="#">CLI Commands</a></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-microchip"></i> Silverback SDK</h3>
+            <ul>
+              <li><a href="#">Getting Started</a></li>
+              <li><a href="#">Event Handling</a></li>
+              <li><a href="#">Best Practices</a></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-puzzle-piece-simple"></i> Plugins</h3>
+            <ul>
+              <li><a href="#">QuickNode Integration</a></li>
+              <li><a href="#">Etherscan Support</a></li>
+              <li><a href="#">Hardware Wallets</a></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-screwdriver-wrench"></i> Tools & Utilities</h3>
+            <ul>
+              <li><a href="#">Custom Scripts</a></li>
+              <li><a href="#">Testing Framework</a></li>
+              <li><a href="#">Deployment Guide</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <small><a href="index.html" class="footer-copyright">&copy; APEWORX <span class="roman">MMXXV</span></a></small>
+    </footer>
+
+    <script>
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = event.target.closest('.copy-btn');
+          const originalHTML = btn.innerHTML;
+          btn.classList.add('success');
+          btn.innerHTML = '<i class="fas fa-check-double"></i>';
+          setTimeout(() => {
+            btn.classList.remove('success');
+            btn.innerHTML = originalHTML;
+          }, 2000);
+        });
+      }
+
+      function toggleCode(type) {
+        const codeBlock = document.getElementById(`${type}-code`);
+        if (codeBlock.style.display === 'none') {
+          codeBlock.style.display = 'block';
+        } else {
+          codeBlock.style.display = 'none';
+        }
+      }
+
+      function copyCode(type) {
+        const codeBlock = document.getElementById(`${type}-code`);
+        const code = codeBlock.querySelector('code').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = codeBlock.querySelector('.copy-btn');
+          const originalHTML = btn.innerHTML;
+          btn.classList.add('success');
+          btn.innerHTML = '<i class="fas fa-check-double"></i>';
+          setTimeout(() => {
+            btn.classList.remove('success');
+            btn.innerHTML = originalHTML;
+          }, 2000);
+        });
+      }
+
+      function toggleMenu(element) {
+        element.classList.toggle('active');
+        const menu = element.nextElementSibling;
+        menu.classList.toggle('active');
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+/* Logo and Header Styles */
+.logo {
+    max-width: 200px;
+}
+
+/* Hero Section */
+.hero-image {
+    text-align: center;
+
+}
+
+.hero-image img {
+    max-width: 200px;
+}
+
+/* Feature Grid */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+/* Quick Start Guide */
+.quick-start {
+    margin: 2rem 0;
+}
+
+.steps {
+    margin: 1.5rem 0;
+}
+
+.step {
+    margin-bottom: 1.5rem;
+}
+
+/* Code Blocks */
+.code-block {
+    background: #1a1f2c;
+    /* Dark blue background */
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin: 0.5rem 0;
+    position: relative;
+    text-align: left;
+}
+
+.code-block code {
+    display: block;
+    text-align: left;
+    font-family: monospace;
+    line-height: 1.5;
+    color: #e6e6e6;
+}
+
+.code-block .comment {
+    color: #6070808b;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 0.45rem;
+    right: 0.45rem;
+    width: 2.25rem;
+    height: 2.25rem;
+}
+
+/* Match the same style for pre elements */
+pre {
+    background: #1a1f2c;
+    padding: 0.9rem;
+    border-radius: var(--radius);
+    text-align: left;
+}
+
+pre code {
+    color: #e6e6e6;
+    font-family: monospace;
+    line-height: 1.5;
+    font-size: 0.9em;
+}
+
+/* Next Steps */
+.next-steps {
+    margin-top: 2rem;
+}
+
+.next-steps ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+
+/* Footer Text */
+footer small {
+    display: block;
+    text-align: center;
+}
+
+/* Release Notes */
+.release-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}

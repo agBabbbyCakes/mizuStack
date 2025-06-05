@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Silverback — Web3 Automation Platform</title>
+    <link rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css" />
+    <link rel="stylesheet" href="assets/css/core-theme.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script defer src="assets/js/alpine.min.js"></script>
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html"><img
+                src="https://www.apeworx.io/assets/apeFull.png" alt="ApeWorX"
+                class="logo" /></a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu(this)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul>
+          <li><a href="saru.html">Ape Framework</a></li>
+          <li><a href="kage.html">Silverback</a></li>
+          <li><a href="hon.html">Docs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- External Trigger: Clear Problem/Solution -->
+      <section class="card hero">
+        <div class="logo-container" style="margin-bottom: 2rem;">
+          <img src="https://www.apeworx.io/silverback/silverback-grey.png"
+            alt="Silverback Logo" class="logo" style="max-width: 200px; margin-top:20px; height: auto;"/>
+        </div>
+        <h1>Dominate Web3 with Automated Trading Power</h1>
+        <p class="lead">Unleash powerful automated bots that dominate blockchain
+          markets with lightning-fast reactions to on-chain events, enterprise-grade
+          reliability, and battle-tested security.</p>
+
+ 
+
+        <div class="cta-button-group">
+          <a href="#get-started" role="button" class="contrast">Start Building
+            Free</a>
+          <a href="hon.html#silverback" role="button">View Documentation</a>
+        </div>
+      </section>
+
+      <!-- Internal Trigger: Pain Points -->
+      <section class="card">
+        <h2>Seize Every Opportunity, Maximize Your Profits</h2>
+        <div class="pain-points-grid">
+          <div class="point-card">
+            <i class="fas fa-clock"></i>
+            <h3>Never Miss Another Trade</h3>
+            <p>Dominate the market with relentless 24/7 monitoring and lightning-fast
+              execution that seizes every profitable opportunity.</p>
+          </div>
+          <div class="point-card">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3>Unstoppable Execution</h3>
+            <p>Power through network congestion with intelligent gas optimization and
+              resilient retry systems that ensure your transactions always succeed.</p>
+          </div>
+          <div class="point-card">
+            <i class="fas fa-robot"></i>
+            <h3>Effortless Infrastructure</h3>
+            <p>Focus purely on your strategy while we handle all the complexity. Deploy battle-tested infrastructure with a single command.</p>
+          </div>
+          <div class="point-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Battle-Tested Security</h3>
+            <p>Rest easy with enterprise-grade security features, private key protection, and robust error handling that keeps your bots safe.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Variable Reward: Use Cases -->
+      <section class="card">
+        <h2>Build Without Boundaries</h2>
+        <p class="lead">Build exactly what you need with our flexible Python
+          SDK.</p>
+
+        <div class="use-cases-grid">
+          <div class="use-case-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>DeFi Automation</h3>
+            <ul>
+              <li>Automated arbitrage between DEXs</li>
+              <li>Liquidation protection</li>
+              <li>Yield farming optimization</li>
+            </ul>
+          </div>
+          <div class="use-case-card">
+            <i class="fas fa-vote-yea"></i>
+            <h3>DAO Operations</h3>
+            <ul>
+              <li>Proposal monitoring</li>
+              <li>Automated voting execution</li>
+              <li>Treasury management</li>
+            </ul>
+          </div>
+          <div class="use-case-card">
+            <i class="fas fa-copy"></i>
+            <h3>Strategy Replication</h3>
+            <ul>
+              <li>Mirror elite trading patterns</li>
+              <li>Amplify proven success</li>
+              <li>Dominate with battle-tested plays</li>
+            </ul>
+          </div>
+          <div class="use-case-card">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Personal Bot Intelligence</h3>
+            <ul>
+              <li>Your personal market companion</li>
+              <li>Crystal-clear decision signals</li>
+              <li>Tailored insights just for you</li>
+            </ul>
+          </div>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- Investment: Getting Started 
+      <section id="get-started" class="card">
+        <h2>Unleash Your Bot's Full Potential</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Install Silverback</h3>
+            <div class="code-block" style="background: var(--color-bg); padding: 1rem; border-radius: var(--radius); margin: 0.5rem 0;">
+              <code style="display: block; overflow-x: auto;">
+                <span style="color: var(--color-muted);"># Install Silverback</span><br>
+                pip install silverback
+              </code>
+              <button class="copy-btn" onclick="copyToClipboard('pip install silverback', event)" style="float: right; margin-top: -2rem;">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Configure Your Bot</h3>
+            <p>Choose your triggers and actions from our extensive library of
+              pre-built components.</p>
+            <a href="hon.html#templates" role="button">Browse Templates</a>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Deploy & Monitor</h3>
+            <p>One command to deploy. Real-time monitoring and alerts
+              included.</p>
+            <a href="hon.html#deployment" role="button">Deployment Guide</a>
+          </div>
+        </div>
+      </section>
+      -->
+
+      <!-- Final Investment + Social Proof -->
+      <section class="card">
+        <h2>Join the Web3 Automation Revolution</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p>"Silverback saved us $50k in missed opportunities last month alone. It's like having a 24/7 trading desk."</p>
+            <cite>— DeFi Protocol Manager</cite>
+          </div>
+          <div class="testimonial-card">
+            <p>"Setup took 10 minutes. Our DAO operations have been running smoothly ever since."</p>
+            <cite>— DAO Core Contributor</cite>
+          </div>
+        </div>
+        <div class="cta-button-group" style="margin-top: 2rem;">
+          <a href="#get-started" role="button" class="contrast">Start Building Free</a>
+          <a href="https://demo.silverback.apeworx.io" role="button" class="secondary">See It In Action <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </section>
+
+      <!-- Vibe Trailer Section -->
+      <section class="card">
+        <h2>Experience the Vibe</h2>
+        <p class="lead">Watch how Silverback transforms Web3 automation into pure power</p>
+        <div class="video-container" style="position: relative; width: 100%; padding-top: 56.25%; margin: 2rem 0; border-radius: var(--radius); overflow: hidden; background: var(--color-bg);">
+          <iframe 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+            src="https://www.youtube.com/embed/STMyCyVZQo8?si=wKf1ut3H5ArIuoTn"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="cta-button-group" style="margin-top: 1rem;">
+          <a href="https://youtu.be/STMyCyVZQo8?feature=shared" role="button" class="secondary">
+            <i class="fas fa-external-link-alt"></i> Watch on YouTube
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <small><a href="index.html" class="footer-copyright">&copy; APEWORX <span class="roman">MMXXV</span></a></small>
+    </footer>
+
+    <script>
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = event.target.closest('.copy-btn');
+          const originalHTML = btn.innerHTML;
+          btn.classList.add('success');
+          btn.innerHTML = '<i class="fas fa-check"></i>';
+          setTimeout(() => {
+            btn.classList.remove('success');
+            btn.innerHTML = originalHTML;
+          }, 2000);
+        });
+      }
+
+      function toggleMenu(element) {
+        element.classList.toggle('active');
+        const menu = element.nextElementSibling;
+        menu.classList.toggle('active');
+      }
+    </script>
+  </body>
+</html>

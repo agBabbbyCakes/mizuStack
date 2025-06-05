@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ape Framework Documentation — Mizu Sprint</title>
+    <link rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css" />
+    <link rel="stylesheet" href="assets/css/core-theme.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script defer src="assets/js/alpine.min.js"></script>
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html"><img
+                src="https://www.apeworx.io/assets/apeFull.png" alt="ApeWorX"
+                class="logo" /></a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu(this)">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul>
+          <li><a href="saru.html">Ape Framework</a></li>
+          <li><a href="kage.html">Silverback</a></li>
+          <li><a href="hon.html">Docs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- Hero Section -->
+      <section class="card">
+        <h1>Ape Framework Documentation</h1>
+        <p class="lead">Dive deep into the Ape Framework and learn how to build powerful smart contracts.</p>
+      </section>
+
+      <!-- Installation Section -->
+      <section class="card">
+        <h2><i class="fas fa-download"></i> Installation</h2>
+        <p>Get started with Ape Framework by following these steps:</p>
+        <ul>
+          <li>Install Ape: <code>pip install eth-ape</code></li>
+          <li>Verify installation: <code>ape --version</code></li>
+        </ul>
+      </section>
+
+      <!-- Project Setup Section -->
+      <section class="card">
+        <h2><i class="fas fa-folder-open"></i> Project Setup</h2>
+        <p>Initialize and set up your Ape project:</p>
+        <ul>
+          <li>Create a new project: <code>ape init</code></li>
+          <li>Configure your project settings in <code>ape-config.yaml</code></li>
+        </ul>
+      </section>
+
+      <!-- Writing Smart Contracts Section -->
+      <section class="card">
+        <h2><i class="fas fa-code"></i> Writing Smart Contracts</h2>
+        <p>Learn how to write and deploy smart contracts with Ape:</p>
+        <ul>
+          <li>Create a contract file: <code>contracts/MyContract.vy</code></li>
+          <li>Deploy your contract: <code>ape run deploy</code></li>
+        </ul>
+      </section>
+
+      <!-- Testing Section -->
+      <section class="card">
+        <h2><i class="fas fa-vial"></i> Testing</h2>
+        <p>Set up your test suite for smart contracts:</p>
+        <ul>
+          <li>Write tests in <code>tests/</code></li>
+          <li>Run tests: <code>ape test</code></li>
+        </ul>
+      </section>
+
+      <!-- Next Steps -->
+      <div class="next-steps" style="margin-top: 2rem;">
+        <h4><i class="fas fa-lightbulb"></i> Next Steps</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li><i class="fas fa-check-circle"></i> <a href="#contracts">Write your first smart contract</a></li>
+          <li><i class="fas fa-check-circle"></i> <a href="#testing">Set up your test suite</a></li>
+          <li><i class="fas fa-check-circle"></i> <a href="#deployment">Deploy to your favorite network</a></li>
+        </ul>
+      </div>
+
+      <div class="cta-button-group">
+        <a href="https://github.com/ApeWorX/ape" role="button" class="contrast">View on GitHub <i class="fas fa-arrow-right"></i></a>
+        <a href="#" role="button" class="secondary">Join Discord Community</a>
+      </div>
+    </main>
+
+    <footer class="container">
+      <small><a href="/" style="color: inherit; text-decoration: none;">&copy; 2025 ApeWorX</a></small>
+    </footer>
+
+    <script>
+      function toggleMenu(element) {
+        element.classList.toggle('active');
+        const menu = element.nextElementSibling;
+        menu.classList.toggle('active');
+      }
+    </script>
+  </body>
+</html> 
