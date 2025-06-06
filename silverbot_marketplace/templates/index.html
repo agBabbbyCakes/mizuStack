@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silverbot Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 64rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        h1 {
+            color: #1a1a1a;
+            font-size: 1.875rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .description {
+            color: #4b5563;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        .bot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .bot-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .bot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .bot-card.selected {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .bot-image {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1rem;
+            transition: transform 0.3s ease;
+        }
+        .bot-card:hover .bot-image {
+            transform: scale(1.1);
+        }
+        .bot-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .stat {
+            background: #f3f4f6;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .module-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .module-card:focus-within {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .module-status {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #1f2937;
+            background-color: #f9fafb;
+            transition: all 0.2s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .phase-transition {
+            transition: all 0.5s ease;
+            position: absolute;
+            width: 100%;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .summary-module {
+            background: #f3f4f6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: left;
+        }
+        .loading-animation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f4f6;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover:not(:disabled) {
+            background-color: #2563eb;
+        }
+        button:disabled {
+            background-color: #93c5fd;
+            cursor: not-allowed;
+        }
+        .error {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" x-data="setupForm" x-init="$watch('showConfetti', value => { if(value) confetti() })">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" :style="{ width: getProgressWidth() }"></div>
+            <div class="progress-text">Step <span x-text="currentPhase"></span> of 3</div>
+        </div>
+
+        <!-- Phase 1: Bot Selection -->
+        <div class="phase-transition" 
+             x-show="currentPhase === 1"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 transform translate-x-full"
+             x-transition:enter-end="opacity-100 transform translate-x-0"
+             x-transition:leave="transition ease-in duration-300"
+             x-transition:leave-start="opacity-100 transform translate-x-0"
+             x-transition:leave-end="opacity-0 transform -translate-x-full">
+            
+            <h1>Choose Your Base Model</h1>
+            <p class="description">Select the foundation for your custom AI companion</p>
+            
+            <div class="bot-grid">
+                <template x-for="bot in bots" :key="bot.id">
+                    <div class="bot-card" 
+                         :class="{ 'selected': selectedBot === bot }"
+                         @click="selectBot(bot)"
+                         @mouseenter="$refs[`tooltip-${bot.id}`].classList.remove('hidden')"
+                         @mouseleave="$refs[`tooltip-${bot.id}`].classList.add('hidden')">
+                        
+                        <div class="edition-badge" x-text="bot.edition"></div>
+                        <div class="price-tag" x-text="formatPrice(bot.basePrice)"></div>
+                        <img :src="bot.image" :alt="bot.name" class="bot-image">
+                        <h3 x-text="bot.name"></h3>
+                        <p x-text="bot.role"></p>
+                        
+                        <div class="bot-stats">
+                            <template x-for="(value, stat) in bot.stats" :key="stat">
+                                <div class="stat">
+                                    <div class="stat-label" x-text="stat.charAt(0).toUpperCase() + stat.slice(1)"></div>
+                                    <div class="stat-value" :class="getStatClass(value)" x-text="value"></div>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Tooltip -->
+                        <div class="tooltip" :ref="`tooltip-${bot.id}`">
+                            <h4 x-text="bot.name"></h4>
+                            <p class="lore" x-text="bot.lore"></p>
+                            <div class="tooltip-stats">
+                                <template x-for="(value, stat) in bot.stats" :key="stat">
+                                    <div class="tooltip-stat">
+                                        <span x-text="stat.charAt(0).toUpperCase() + stat.slice(1)"></span>
+                                        <div class="stat-bar">
+                                            <div class="stat-fill" :style="`width: ${value}%`"></div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <div class="text-center" x-show="selectedBot">
+                <button @click="nextPhase" :disabled="!selectedBot">Next: Customize Your Bot</button>
+            </div>
+        </div>
+
+        <!-- Phase 2: Customization -->
+        <div class="phase-transition" 
+             x-show="currentPhase === 2"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 transform translate-x-full"
+             x-transition:enter-end="opacity-100 transform translate-x-0"
+             x-transition:leave="transition ease-in duration-300"
+             x-transition:leave-start="opacity-100 transform translate-x-0"
+             x-transition:leave-end="opacity-0 transform -translate-x-full">
+
+            <div class="customization-container">
+                <div class="preview-panel">
+                    <div class="bot-preview" :style="{ backgroundColor: customizationOptions.color }">
+                        <img :src="selectedBot.image" :alt="selectedBot.name" class="preview-image">
+                        <div class="accessory-overlay">
+                            <template x-for="accessory in customizationOptions.accessories" :key="accessory.id">
+                                <div class="accessory-icon" x-text="accessory.icon"></div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="preview-info">
+                        <h2 x-text="selectedBot.name"></h2>
+                        <p class="preview-role" x-text="selectedBot.role"></p>
+                        <div class="preview-stats">
+                            <template x-for="(value, stat) in customizationOptions.performance" :key="stat">
+                                <div class="preview-stat">
+                                    <span x-text="stat.charAt(0).toUpperCase() + stat.slice(1)"></span>
+                                    <input type="range" 
+                                           :min="selectedBot.stats[stat]" 
+                                           max="100" 
+                                           :value="value"
+                                           @input="updatePerformance(stat, $event.target.value)">
+                                    <span class="stat-value" x-text="value"></span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customization-options">
+                    <div class="option-section">
+                        <h3>Color Options</h3>
+                        <div class="color-grid">
+                            <template x-for="color in selectedBot.availableColors" :key="color">
+                                <div class="color-option" 
+                                     :style="{ backgroundColor: color }"
+                                     :class="{ 'selected': customizationOptions.color === color }"
+                                     @click="customizationOptions.color = color"></div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="option-section">
+                        <h3>Accessories</h3>
+                        <div class="accessories-grid">
+                            <template x-for="accessory in selectedBot.accessories" :key="accessory.id">
+                                <div class="accessory-option"
+                                     :class="{ 'selected': customizationOptions.accessories.find(a => a.id === accessory.id) }"
+                                     @click="toggleAccessory(accessory)">
+                                    <span class="accessory-icon" x-text="accessory.icon"></span>
+                                    <span class="accessory-name" x-text="accessory.name"></span>
+                                    <span class="accessory-price" x-text="formatPrice(accessory.price)"></span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-panel">
+                    <h3>Order Summary</h3>
+                    <div class="summary-item">
+                        <span>Base Model</span>
+                        <span x-text="formatPrice(selectedBot.basePrice)"></span>
+                    </div>
+                    <template x-for="accessory in customizationOptions.accessories" :key="accessory.id">
+                        <div class="summary-item">
+                            <span x-text="accessory.name"></span>
+                            <span x-text="formatPrice(accessory.price)"></span>
+                        </div>
+                    </template>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span x-text="formatPrice(calculateTotal())"></span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button @click="prevPhase">Back</button>
+                    <button @click="nextPhase">Continue to Configuration</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 3: Configuration -->
+        <div class="phase-transition" 
+             x-show="currentPhase === 3"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 transform scale-95"
+             x-transition:enter-end="opacity-100 transform scale-100"
+             x-transition:leave="transition ease-in duration-300"
+             x-transition:leave-start="opacity-100 transform scale-100"
+             x-transition:leave-end="opacity-0 transform scale-95">
+
+            <div x-show="isLoading" class="loading-animation">
+                <div class="loading-spinner"></div>
+                <p>Initializing your custom bot...</p>
+            </div>
+
+            <div x-show="!isLoading" class="profile-panel">
+                <div class="energy-wave"></div>
+                <div class="checkmark">✓</div>
+                
+                <div class="profile-header">
+                    <div class="bot-preview" :style="{ backgroundColor: customizationOptions.color }">
+                        <img :src="selectedBot.image" :alt="selectedBot.name" class="profile-image">
+                        <div class="accessory-overlay">
+                            <template x-for="accessory in customizationOptions.accessories" :key="accessory.id">
+                                <div class="accessory-icon" x-text="accessory.icon"></div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h2 x-text="selectedBot.name"></h2>
+                        <p class="role" x-text="selectedBot.role"></p>
+                        <span class="edition" x-text="selectedBot.edition"></span>
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <template x-for="(value, stat) in customizationOptions.performance" :key="stat">
+                        <div class="profile-stat">
+                            <span x-text="stat.charAt(0).toUpperCase() + stat.slice(1)"></span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" :style="`width: ${value}%`"></div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="installed-modules">
+                    <h3>Installed Modules</h3>
+                    <div class="module-grid">
+                        <template x-for="accessory in customizationOptions.accessories" :key="accessory.id">
+                            <div class="module-item">
+                                <span class="module-icon" x-text="accessory.icon"></span>
+                                <span class="module-name" x-text="accessory.name"></span>
+                                <span class="module-status">Connected</span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="activation-message">
+                    <p>Your custom bot is now live and ready!</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button @click="currentPhase = 1">Configure Another Bot</button>
+                    <button class="customize-btn">Manage Your Bots</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

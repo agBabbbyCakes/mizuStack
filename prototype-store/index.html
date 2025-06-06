@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silverback Bot Creator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <style>
+        .hero-section {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(to bottom, var(--card-background-color), transparent);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.5;
+        }
+        .silverback-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #4a90e2;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .bot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .bot-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--card-background-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .bot-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .bot-card.selected {
+            border: 3px solid #4a90e2;
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+        }
+        .bot-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin: 1rem auto;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+        }
+        .bot-card:hover img {
+            transform: scale(1.1);
+        }
+        .bot-type {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .type-security { background: #4a90e2; }
+        .type-guard { background: #e24a4a; }
+        .type-assistant { background: #4ae24a; }
+        .bot-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .stat {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transition: width 0.3s ease;
+        }
+        .bot-description {
+            margin: 1rem 0;
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .selection-message {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            color: #4a90e2;
+            padding: 1rem;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 8px;
+        }
+        .edition-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #ffd700;
+            color: #000;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        .powered-by {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #4a90e2;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <section class="hero-section">
+            <div class="silverback-badge">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 0L16 8L8 16L0 8L8 0Z" fill="white"/>
+                </svg>
+                Powered by Silverback
+            </div>
+            <h1>Bot Creator</h1>
+            <p class="lead">Create, customize, and deploy your AI companions</p>
+        </section>
+
+        <div class="container" x-data="setupForm">
+            <div class="bot-grid">
+                <template x-for="bot in bots" :key="bot.id">
+                    <article class="bot-card" 
+                            :class="{ 'selected': selectedBot === bot }"
+                            @click="selectedBot = bot">
+                        <span class="edition-badge" x-text="bot.edition"></span>
+                        <span class="bot-type" :class="'type-' + bot.type" x-text="bot.role"></span>
+                        <img :src="bot.image" :alt="bot.name">
+                        <h3 x-text="bot.name"></h3>
+                        <p class="bot-description" x-text="bot.description"></p>
+                        <div class="bot-stats">
+                            <div class="stat">
+                                <strong>Power</strong>
+                                <div x-text="bot.stats.power"></div>
+                                <div class="stat-bar" :style="'width: ' + bot.stats.power + '%'"></div>
+                            </div>
+                            <div class="stat">
+                                <strong>Defense</strong>
+                                <div x-text="bot.stats.defense"></div>
+                                <div class="stat-bar" :style="'width: ' + bot.stats.defense + '%'"></div>
+                            </div>
+                            <div class="stat">
+                                <strong>Speed</strong>
+                                <div x-text="bot.stats.speed"></div>
+                                <div class="stat-bar" :style="'width: ' + bot.stats.speed + '%'"></div>
+                            </div>
+                            <div class="stat">
+                                <strong>Intelligence</strong>
+                                <div x-text="bot.stats.intelligence"></div>
+                                <div class="stat-bar" :style="'width: ' + bot.stats.intelligence + '%'"></div>
+                            </div>
+                        </div>
+                        <div class="powered-by">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L16 8L8 16L0 8L8 0Z" fill="#4a90e2"/>
+                            </svg>
+                            Silverback Powered
+                        </div>
+                    </article>
+                </template>
+            </div>
+
+            <div class="selection-message" x-show="selectedBot">
+                <p>You selected <strong x-text="selectedBot.name"></strong>!</p>
+                <div style="margin-top: 1rem;">
+                    <button @click="window.location.href='marketplace.html'" style="margin-right: 1rem;">Continue to Marketplace</button>
+                    <button @click="window.location.href='customize.html'" style="background: var(--secondary-color);">Customize Bot</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edition Comparison -->
+        <section class="container" style="margin-top: 4rem; padding: 2rem; background: var(--card-background-color); border-radius: 12px;">
+            <h2>Choose Your Edition</h2>
+            <div class="grid" style="margin-top: 2rem;">
+                <article>
+                    <h3>Standard Edition</h3>
+                    <p>Perfect for getting started</p>
+                    <ul>
+                        <li>Basic bot customization</li>
+                        <li>Community support</li>
+                        <li>Regular updates</li>
+                    </ul>
+                    <button>Get Started</button>
+                </article>
+                <article>
+                    <h3>Premium Edition</h3>
+                    <p>For serious creators</p>
+                    <ul>
+                        <li>Advanced customization</li>
+                        <li>Priority support</li>
+                        <li>Early access to features</li>
+                    </ul>
+                    <button>Upgrade Now</button>
+                </article>
+                <article>
+                    <h3>Elite Edition</h3>
+                    <p>For enterprise users</p>
+                    <ul>
+                        <li>Full source code access</li>
+                        <li>24/7 support</li>
+                        <li>Custom development</li>
+                    </ul>
+                    <button>Contact Sales</button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Customization Section -->
+    <section class="container" style="margin-top: 4rem; padding: 2rem; background: var(--card-background-color); border-radius: 12px;">
+        <h2>Make It Your Own</h2>
+        <p class="lead">Customize this template to create your own digital asset marketplace</p>
+
+        <div class="grid" style="margin-top: 2rem;">
+            <!-- Example 1: Custom Bot Types -->
+            <article>
+                <h3>1. Define Your Bot Types</h3>
+                <p>Customize the bot types to match your brand. Here's how to add a new type:</p>
+                <pre><code>const botTypes = {
+    warrior: {
+        color: '#ff6b6b',
+        icon: '⚔️',
+        stats: ['strength', 'agility', 'defense']
+    },
+    mage: {
+        color: '#4dabf7',
+        icon: '✨',
+        stats: ['intelligence', 'mana', 'wisdom']
+    }
+    // Add your custom types here
+};</code></pre>
+            </article>
+
+            <!-- Example 2: Custom Stats -->
+            <article>
+                <h3>2. Customize Stats</h3>
+                <p>Modify the stats to match your game mechanics:</p>
+                <pre><code>const customStats = {
+    power: { max: 100, color: '#ff6b6b' },
+    defense: { max: 100, color: '#4dabf7' },
+    speed: { max: 100, color: '#51cf66' },
+    // Add your custom stats
+};</code></pre>
+            </article>
+
+            <!-- Example 3: Theme Customization -->
+            <article>
+                <h3>3. Theme Customization</h3>
+                <p>Change the look and feel with CSS variables:</p>
+                <pre><code>:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #e24a4a;
+    --background-dark: #1a1a1a;
+    --card-background: #2a2a2a;
+    --text-color: #ffffff;
+}</code></pre>
+            </article>
+        </div>
+
+        <!-- Implementation Examples -->
+        <div class="grid" style="margin-top: 2rem;">
+            <article>
+                <h3>Gaming Platform</h3>
+                <p>Transform this into a character selection screen for your game:</p>
+                <ul>
+                    <li>Add character classes and abilities</li>
+                    <li>Implement level progression</li>
+                    <li>Add skill trees and upgrades</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>NFT Marketplace</h3>
+                <p>Convert this into an NFT trading platform:</p>
+                <ul>
+                    <li>Add wallet integration</li>
+                    <li>Implement minting functionality</li>
+                    <li>Add trading and auction features</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>Digital Asset Store</h3>
+                <p>Use this as a template for selling digital assets:</p>
+                <ul>
+                    <li>Add shopping cart functionality</li>
+                    <li>Implement user accounts</li>
+                    <li>Add payment processing</li>
+                </ul>
+            </article>
+        </div>
+
+        <!-- Download Section -->
+        <div style="margin-top: 3rem; text-align: center; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+            <h3>Get Started</h3>
+            <p>Download the complete source code and start building your own version</p>
+            <div style="margin-top: 1rem;">
+                <button onclick="downloadSource()" style="background: var(--primary-color);">
+                    Download Source Files
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function downloadSource() {
+            // This would be replaced with actual file download logic
+            alert('Source files would be downloaded here. In a real implementation, this would trigger a zip file download containing all the necessary files.');
+        }
+    </script>
+</body>
+</html> 
